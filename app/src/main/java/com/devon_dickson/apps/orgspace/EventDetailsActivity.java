@@ -3,6 +3,7 @@ package com.devon_dickson.apps.orgspace;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.CalendarContract;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +20,12 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 
-public class EventDetailsActivity extends SwipeActivity {
+public class EventDetailsActivity extends SwipeActivity implements ApiServiceResultReceiver.Receiver{
     public static int eventID;
     public static Event event;
     public static TextView textLocation;
@@ -32,6 +36,9 @@ public class EventDetailsActivity extends SwipeActivity {
     public static TextView textDescription;
     public static TextView textOrg;
     public static CardView cardDate;
+    public static TextView headerFriends;
+    public ArrayList<HashMap<String, String>> guests;
+    public ApiServiceResultReceiver mReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +51,6 @@ public class EventDetailsActivity extends SwipeActivity {
             eventID = intent.getIntExtra("EventID", 1);
         }
 
-    Log.d("eventID", "" + eventID);
         event = Event.find(Event.class, "EVENT_ID="+eventID).get(0);
         textLocation = (TextView) findViewById(R.id.textLocation);
         textDate = (TextView) findViewById(R.id.textDate);
@@ -52,6 +58,7 @@ public class EventDetailsActivity extends SwipeActivity {
         textDescription = (TextView) findViewById(R.id.description);
         cardDate = (CardView) findViewById(R.id.cardDate);
         textOrg = (TextView) findViewById(R.id.textOrg);
+        headerFriends = (TextView) findViewById(R.id.headerFriends);
 
 
         CollapsingToolbarLayout tb = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -86,6 +93,13 @@ public class EventDetailsActivity extends SwipeActivity {
             }
         });
 
+        mReceiver = new ApiServiceResultReceiver(new Handler());
+        mReceiver.setReceiver(this);
+        Intent guestsIntent = new Intent(this, ApiService.class);
+        guestsIntent.putExtra("receiver", mReceiver);
+        guestsIntent.putExtra("EventID", event.getEventID());
+        guestsIntent.setAction("GET_GUESTS");
+        this.startService(guestsIntent);
 
     }
 
@@ -124,5 +138,48 @@ public class EventDetailsActivity extends SwipeActivity {
     }
 
 
+    @Override
+    public void onReceiveResult(int resultCode, Bundle resultData) {
+        Log.d("ResultsReceiver", "received");
+        guests = (ArrayList<HashMap<String, String>>)(resultData.getSerializable("guests"));
+        Log.d("Received Hashmap", guests.toString());
+
+        displayGuests(guests);
+    }
+
+    private void displayGuests(ArrayList<HashMap<String, String>> guests) {
+        int numGuests = guests.size();
+        if(numGuests>0) {
+            headerFriends.setText(numGuests + " Friends Are!");
+        }else {
+            headerFriends.setText("Be the First to RSVP!");
+        }
+
+        LinearLayout guestView = (LinearLayout)findViewById(R.id.layoutFaces);
+
+        for(int i = 0; i < numGuests; i++) {
+            de.hdodenhof.circleimageview.CircleImageView face = new de.hdodenhof.circleimageview.CircleImageView(this);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(8,0,8,0);
+            lp.height = 96;
+            lp.width = 96;
+            face.setLayoutParams(lp);
+            guestView.addView(face);
+
+            String faceURL = guests.get(i).get("avatar");
+            Picasso.with(this).load(faceURL).error(R.drawable.image_error).resize(96, 96).centerCrop().into(face);
+        }
+
+    }
 }
 
+/*
+<de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/face_devon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/face"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp" />*/

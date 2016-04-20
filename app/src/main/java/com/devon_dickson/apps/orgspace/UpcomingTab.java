@@ -142,6 +142,15 @@ public class UpcomingTab extends Fragment implements ApiServiceResultReceiver.Re
     }
 
     @Override
+    public void onResume() {
+        Intent intent = new Intent(getActivity(), ApiService.class);
+        intent.putExtra("receiver", mReceiver);
+        intent.setAction("GET_EVENTS");
+        getActivity().startService(intent);
+        super.onResume();
+    }
+
+    @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
         List<Event> events = Event.listAll(Event.class);
         rv.setAdapter(new RVAdapter(events, new RVAdapter.OnItemClickListener() {

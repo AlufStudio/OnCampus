@@ -2,20 +2,6 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\ddickson1.PLYMOUTH.001\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.3.0\8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c\bolts-tasks-1.3.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.3.0-ff51b77772948f58f29566f84c9b7d79357f3b4f.jar" />
-    </item>
-    <item
-        jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.10.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="53df71a373e68311fc2c587aa814db7f366ace95">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-d5594326b3a71b1ca6ce9d7158e49ea1606d4193.jar" />
-    </item>
-    <item
         jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\libs\internal_impl-23.2.0.jar"
         jumboMode="false"
         revision="23.0.3"
@@ -30,53 +16,11 @@
         <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-ea1b9558ef494adfcafc6b0fa73c3a17654c7987.jar" />
     </item>
     <item
-        jar="C:\Users\ddickson1.PLYMOUTH.001\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.3.0\bc535105332645408ef5f1380215cc954b842178\bolts-applinks-1.3.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="bc535105332645408ef5f1380215cc954b842178">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\bolts-applinks-1.3.0-7740a2ad7e91adabf818b95be9bc70ef8e890189.jar" />
-    </item>
-    <item
-        jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.github.satyan\sugar\1.4\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="ac045b53684345f4ec8468477e8fc5034d0d2bfd">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-d1113e7c1be3b0e834e67bfa4bee8b7e216fea07.jar" />
-    </item>
-    <item
-        jar="C:\Users\ddickson1.PLYMOUTH.001\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jar="C:\Users\ddickson1.PLYMOUTH.003\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
         jumboMode="false"
         revision="23.0.3"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-a2a00e1a4f12b3af74ce6e9f1ba7c6499c920cbc.jar" />
-    </item>
-    <item
-        jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="bc599eb9531da9d18bc58ec4eb0b1a1d895f6839">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-ef758e7b9f67036846fd3654ca8dec74703d6ba0.jar" />
-    </item>
-    <item
-        jar="C:\Users\ddickson1.PLYMOUTH.001\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.6.2\f1bc476cc167b18e66c297df599b2377131a8947\gson-2.6.2.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\gson-2.6.2-fbdeca7ef0585e0b7daf1680e420d16a7317b78c.jar" />
-    </item>
-    <item
-        jar="C:\Users\ddickson1.PLYMOUTH.001\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.0\support-annotations-23.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="c5bf571bb10462bd90e5419ade67793f71acbc87">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.0-dc864b193711d952f5fcc757d82ed265dd8b3e39.jar" />
-    </item>
-    <item
-        jar="C:\Users\ddickson1.PLYMOUTH.001\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.0\a7537446a030da8eb0da4c71424d16c2589f6c4a\glide-3.6.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="a7537446a030da8eb0da4c71424d16c2589f6c4a">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\glide-3.6.0-66570c52732a11c3d4bdd338b23f1d548049afad.jar" />
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-f3910fdbde02c33f391a205d803222db271d380b.jar" />
     </item>
     <item
         jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.1\jars\classes.jar"
@@ -86,18 +30,81 @@
         <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-f449bf7e58cea7cb64764c5d06a9aea3f0aad805.jar" />
     </item>
     <item
-        jar="C:\Users\ddickson1.PLYMOUTH.001\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jar="C:\Users\ddickson1.PLYMOUTH.003\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.6.2\f1bc476cc167b18e66c297df599b2377131a8947\gson-2.6.2.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\okio-1.6.0-706ff993f9a5453395013a2277faec768360b42d.jar" />
+        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\gson-2.6.2-bd74ee838ec5f18a46d8698181867b18fdaafdd2.jar" />
     </item>
     <item
-        jar="C:\Users\ddickson1.PLYMOUTH.001\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.2.0\f7873a2ebde246a45c2a8d6f3247108b4c88a879\okhttp-3.2.0.jar"
+        jar="C:\Users\ddickson1.PLYMOUTH.003\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\18.0\cce0823396aa693798f8882e64213b1772032b09\guava-18.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="cce0823396aa693798f8882e64213b1772032b09">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\guava-18.0-0aef6de353c992feb636389809201472c632e337.jar" />
+    </item>
+    <item
+        jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.github.satyan\sugar\1.4\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ac045b53684345f4ec8468477e8fc5034d0d2bfd">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-d1113e7c1be3b0e834e67bfa4bee8b7e216fea07.jar" />
+    </item>
+    <item
+        jar="C:\Users\ddickson1.PLYMOUTH.003\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.0\a7537446a030da8eb0da4c71424d16c2589f6c4a\glide-3.6.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="a7537446a030da8eb0da4c71424d16c2589f6c4a">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\glide-3.6.0-6f0905ecc3ed47cd54bcaf65220283d448d840b0.jar" />
+    </item>
+    <item
+        jar="C:\Users\ddickson1.PLYMOUTH.003\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.0\support-annotations-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="c5bf571bb10462bd90e5419ade67793f71acbc87">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.0-84fcababf23c8158b9d91c38f895d89643309dab.jar" />
+    </item>
+    <item
+        jar="C:\Users\ddickson1.PLYMOUTH.003\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.2.0\f7873a2ebde246a45c2a8d6f3247108b4c88a879\okhttp-3.2.0.jar"
         jumboMode="false"
         revision="23.0.3"
         sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\okhttp-3.2.0-acea5ff2237b28810c8e351df4f95fad5502a372.jar" />
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\okhttp-3.2.0-d9b0e302bf17ca0978bd0cad2bb74797ab0be4e8.jar" />
+    </item>
+    <item
+        jar="C:\Users\ddickson1.PLYMOUTH.003\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\okio-1.6.0-b32a438159af7b94db7f16bb6420219f54ab5e1a.jar" />
+    </item>
+    <item
+        jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-d4dadcf8c2bcc46cef54814e0b34545a7f4637f4.jar" />
+    </item>
+    <item
+        jar="C:\Users\ddickson1.PLYMOUTH.003\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.3.0\bc535105332645408ef5f1380215cc954b842178\bolts-applinks-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="bc535105332645408ef5f1380215cc954b842178">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\bolts-applinks-1.3.0-caa40c06853c0ed574d5f622577cb7f242b40ec7.jar" />
+    </item>
+    <item
+        jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="bc599eb9531da9d18bc58ec4eb0b1a1d895f6839">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-ef758e7b9f67036846fd3654ca8dec74703d6ba0.jar" />
+    </item>
+    <item
+        jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.10.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="53df71a373e68311fc2c587aa814db7f366ace95">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-d5594326b3a71b1ca6ce9d7158e49ea1606d4193.jar" />
     </item>
     <item
         jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
@@ -107,18 +114,11 @@
         <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-dbb9f1178204aacf514f61c0bb1a8dc34f3af58d.jar" />
     </item>
     <item
-        jar="C:\Users\ddickson1.PLYMOUTH.001\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\18.0\cce0823396aa693798f8882e64213b1772032b09\guava-18.0.jar"
+        jar="C:\Users\ddickson1.PLYMOUTH.003\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.3.0\8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c\bolts-tasks-1.3.0.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="cce0823396aa693798f8882e64213b1772032b09">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\guava-18.0-0b43b24a9a93198f340b02f0607d3ac76cf0f300.jar" />
-    </item>
-    <item
-        jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
-        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\classes-d4dadcf8c2bcc46cef54814e0b34545a7f4637f4.jar" />
+        sha1="8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c">
+        <dex dex="T:\OnCampus\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.3.0-32e89d24d8c0545c7658ae923ae7518aef680564.jar" />
     </item>
     <item
         jar="T:\OnCampus\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\jars\classes.jar"

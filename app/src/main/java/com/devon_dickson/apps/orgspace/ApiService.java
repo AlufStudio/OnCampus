@@ -5,21 +5,26 @@ import android.content.Intent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.ResultReceiver;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import okhttp3.OkHttpClient;
@@ -76,7 +81,6 @@ public class ApiService extends IntentService {
         if (intent != null) {
             final String action = intent.getAction();
             receiver = intent.getParcelableExtra("receiver");
-            Log.d("Get ParcelableXtra", receiver+"");
             Log.d("Action", action);
             if (ACTION_GET_EVENTS.equals(action)) {
                 Log.d("Service", "Starting GetEvents");
@@ -118,7 +122,7 @@ public class ApiService extends IntentService {
             Log.d("Test","failed");
             throw new IOException("Unexpected code " + response);
         }
-        Log.d("Test","Success!");
+        Log.d("Test", "Success!");
         String resp = response.body().string();
         Log.d("jwt", resp);
 
@@ -193,8 +197,36 @@ public class ApiService extends IntentService {
         receiver.send(1, null);
     }
 
-    public void handleActionGetGuests(String param1) {
+    public void handleActionGetGuests(String eventID) throws Exception{
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String prefJWT = settings.getString("jwt", "");
+        Log.d("JWT", prefJWT);
+        Event.deleteAll(Event.class);
 
+        Request request = new Request.Builder()
+                //.url(url+api+"events/"+eventID+"/guests?token=" + prefJWT)
+                .url(url+api+"events/"+ eventID+"/guests")
+                .build();
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Unexpected code " + response);
+        }
+
+        //Event event = gson.fromJson(response.body().charStream(), Event.class);
+        String jsonStr = response.body().string();
+        jsonStr = jsonStr.trim();
+        Log.d("Guests Response", jsonStr.length()+"");
+        Bundle bundle = new Bundle();
+        if(jsonStr.equals("\"\"")) {
+            bundle.putSerializable("guests", new ArrayList<HashMap<String, String>>());
+        }else {
+            Log.d("This should", "Not be happening");
+            Type collectionType = new TypeToken<ArrayList<HashMap<String, String>>>(){}.getType();
+            ArrayList<HashMap<String, String>> guests = gson.fromJson(jsonStr, collectionType);
+            bundle.putSerializable("guests", guests);
+        }
+
+        receiver.send(1, bundle);
     }
 
     public void handleActionPostEvents(String param1) {

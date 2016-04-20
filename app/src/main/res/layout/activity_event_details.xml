@@ -163,46 +163,6 @@
                     android:paddingBottom="8dp">
 
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/face_devon"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/face"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/face_mark"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/face"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/face_kristi"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/face"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp" />
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/face_extra"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/face"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp" />
-
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/face_emily"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/elipse"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp" />
-
                 </LinearLayout>
             </LinearLayout>
 
@@ -243,7 +203,8 @@
                         android:textSize="20sp"
                         android:layout_marginStart="16dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp" />
 
 
                 </RelativeLayout>
