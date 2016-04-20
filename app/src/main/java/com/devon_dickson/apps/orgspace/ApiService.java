@@ -27,8 +27,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -47,6 +49,7 @@ public class ApiService extends IntentService {
     // Intent Actions
     private static final String ACTION_GET_EVENTS = "GET_EVENTS";
     private static final String ACTION_GET_GUESTS = "GET_GUESTS";
+    private static final String ACTION_POST_GUESTS = "POST_GUESTS";
     private static final String ACTION_GET_TOKEN = "GET_TOKEN";
     private static final String ACTION_POST_EVENTS = "POST_EVENTS";
 
@@ -111,8 +114,45 @@ public class ApiService extends IntentService {
                 }catch(Exception e) {
                     Log.d("Exception",e+"");
                 }
+            } else if (ACTION_POST_GUESTS.equals(action)) {
+                final String param1 = intent.getStringExtra(EXTRA_EVENT_ID);
+                try {
+                    handleActionPostGuests(param1);
+                }catch(Exception e) {
+                    Log.d("Exception",e+"");
+                }
             }
         }
+    }
+
+    private void handleActionPostGuests(String eventID) throws Exception{
+        int result;
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String prefJWT = settings.getString("jwt", "");
+        Log.d("JWT", prefJWT);
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("token", prefJWT)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url+api+"events/"+ eventID+"/guests?token="+prefJWT)
+                .post(formBody)
+                .build();
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Unexpected code " + response);
+        }
+
+        String jsonStr = response.body().string();
+
+        if(jsonStr.equals("\"Success\"")) {
+            result = 1;
+        }else {
+            result = 0;
+        }
+        Log.d("1 means you were added", result+"");
+        receiver.send(result, null);
     }
 
     public void handleActionGetToken(String token, String facebook_id) throws Exception{
@@ -138,7 +178,6 @@ public class ApiService extends IntentService {
         Log.d("Service", "GetEvents started");
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String prefJWT = settings.getString("jwt", "");
-
         Event.deleteAll(Event.class);
 
         Request request = new Request.Builder()
@@ -201,7 +240,6 @@ public class ApiService extends IntentService {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String prefJWT = settings.getString("jwt", "");
         Log.d("JWT", prefJWT);
-        Event.deleteAll(Event.class);
 
         Request request = new Request.Builder()
                 //.url(url+api+"events/"+eventID+"/guests?token=" + prefJWT)
@@ -226,7 +264,7 @@ public class ApiService extends IntentService {
             bundle.putSerializable("guests", guests);
         }
 
-        receiver.send(1, bundle);
+        receiver.send(3, bundle);
     }
 
     public void handleActionPostEvents(String param1) {

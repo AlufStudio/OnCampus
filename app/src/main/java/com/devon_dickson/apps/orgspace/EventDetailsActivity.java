@@ -11,6 +11,7 @@ import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,6 +38,8 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
     public static TextView textOrg;
     public static CardView cardDate;
     public static TextView headerFriends;
+    public static Button buttonYes;
+    public static Button buttonNo;
     public ArrayList<HashMap<String, String>> guests;
     public ApiServiceResultReceiver mReceiver;
 
@@ -44,6 +47,9 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
+        mReceiver = new ApiServiceResultReceiver(new Handler());
+        mReceiver.setReceiver(this);
+
         Intent intent = getIntent();
         Bundle extras = getIntent().getExtras();
         if(extras !=null)
@@ -59,6 +65,8 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
         cardDate = (CardView) findViewById(R.id.cardDate);
         textOrg = (TextView) findViewById(R.id.textOrg);
         headerFriends = (TextView) findViewById(R.id.headerFriends);
+        buttonYes = (Button) findViewById(R.id.buttonYes);
+        buttonNo = (Button) findViewById(R.id.buttonNo);
 
 
         CollapsingToolbarLayout tb = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -93,8 +101,18 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
             }
         });
 
-        mReceiver = new ApiServiceResultReceiver(new Handler());
-        mReceiver.setReceiver(this);
+        buttonYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent yesIntent = new Intent(getApplication(), ApiService.class);
+                yesIntent.putExtra("receiver", mReceiver);
+                yesIntent.putExtra("EventID", event.getEventID());
+                yesIntent.setAction("POST_GUESTS");
+                getApplication().startService(yesIntent);
+            }
+        });
+
+
         Intent guestsIntent = new Intent(this, ApiService.class);
         guestsIntent.putExtra("receiver", mReceiver);
         guestsIntent.putExtra("EventID", event.getEventID());
@@ -140,11 +158,26 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
-        Log.d("ResultsReceiver", "received");
-        guests = (ArrayList<HashMap<String, String>>)(resultData.getSerializable("guests"));
-        Log.d("Received Hashmap", guests.toString());
+        if(resultCode==3) {
+            guests = (ArrayList<HashMap<String, String>>)(resultData.getSerializable("guests"));
+            displayGuests(guests);
+        }else if(resultCode==1) {
+            Log.d("RSVP", "Successful");
+            fetchGuests();
+            Toast.makeText(getApplication(), "Great, see you there!", Toast.LENGTH_SHORT).show();
+        }else if(resultCode==0) {
+            Log.d("RSVP", "Failed");
+            Toast.makeText(getApplication(), "Whoops, you're already going!", Toast.LENGTH_SHORT).show();
+        }
 
-        displayGuests(guests);
+    }
+
+    private void fetchGuests() {
+        Intent guestsIntent = new Intent(this, ApiService.class);
+        guestsIntent.putExtra("receiver", mReceiver);
+        guestsIntent.putExtra("EventID", event.getEventID());
+        guestsIntent.setAction("GET_GUESTS");
+        this.startService(guestsIntent);
     }
 
     private void displayGuests(ArrayList<HashMap<String, String>> guests) {
