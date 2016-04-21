@@ -1,16 +1,12 @@
-package com.devon_dickson.apps.orgspace;
+package com.devon_dickson.apps.oncampus;
 
 import android.app.ActionBar;
-import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,11 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.orm.SugarContext;
@@ -143,10 +135,18 @@ public class UpcomingTab extends Fragment implements ApiServiceResultReceiver.Re
 
     @Override
     public void onResume() {
-        Intent intent = new Intent(getActivity(), ApiService.class);
+        /*Intent intent = new Intent(getActivity(), ApiService.class);
         intent.putExtra("receiver", mReceiver);
         intent.setAction("GET_EVENTS");
         getActivity().startService(intent);
+        */
+        List<Event> events = Event.listAll(Event.class);
+        rv.setAdapter(new RVAdapter(events, new RVAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Event event) {
+                openEvent(event.getEventID());
+            }
+        }));
         super.onResume();
     }
 

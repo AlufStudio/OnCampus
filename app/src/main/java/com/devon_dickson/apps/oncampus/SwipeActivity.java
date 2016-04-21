@@ -1,6 +1,5 @@
-package com.devon_dickson.apps.orgspace;
+package com.devon_dickson.apps.oncampus;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;

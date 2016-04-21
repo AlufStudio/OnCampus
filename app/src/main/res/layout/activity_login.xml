@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.devon_dickson.apps.orgspace.LoginActivity">
+    tools:context="com.devon_dickson.apps.oncampus.LoginActivity">
 
     <ImageView
         android:layout_width="fill_parent"

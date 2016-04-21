@@ -1,4 +1,4 @@
-package com.devon_dickson.apps.orgspace;
+package com.devon_dickson.apps.oncampus;
 
 /**
  * Created by ddickson1 on 3/23/2016.

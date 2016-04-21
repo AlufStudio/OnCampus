@@ -1,12 +1,9 @@
-package com.devon_dickson.apps.orgspace;
+package com.devon_dickson.apps.oncampus;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Binder;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.ResultReceiver;
 import android.preference.PreferenceManager;
 import android.util.Log;

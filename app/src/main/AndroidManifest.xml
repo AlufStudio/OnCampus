@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.devon_dickson.apps.orgspace">
+    package="com.devon_dickson.apps.oncampus">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="DATABASE"
-            android:value="orgSpace.db" />
+            android:value="onCampus.db" />
         <meta-data
             android:name="Version"
             android:value="2" />
@@ -21,17 +21,17 @@
             android:value="false" />
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
-            android:value="com.devon_dickson.apps.orgspace" />
+            android:value="com.devon_dickson.apps.oncampus" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.devon_dickson.apps.oncampus.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".EventDetailsActivity"
+            android:name="com.devon_dickson.apps.oncampus.EventDetailsActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppCompatTheme" />
@@ -41,7 +41,7 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.devon_dickson.apps.oncampus.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppCompatTheme">
@@ -53,7 +53,7 @@
         </activity>
 
         <service
-            android:name=".ApiService"
+            android:name="com.devon_dickson.apps.oncampus.ApiService"
             android:exported="false"></service>
     </application>
 

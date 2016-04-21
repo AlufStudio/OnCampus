@@ -1,4 +1,4 @@
-package com.devon_dickson.apps.orgspace;
+package com.devon_dickson.apps.oncampus;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

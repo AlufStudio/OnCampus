@@ -1,4 +1,4 @@
-package com.devon_dickson.apps.orgspace;
+package com.devon_dickson.apps.oncampus;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
