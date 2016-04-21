@@ -22,6 +22,15 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 public class EventDetailsActivity extends SwipeActivity implements ApiServiceResultReceiver.Receiver{
+    //ResultsReceiver resultCodes
+    private static final int GET_GUESTS_SUCCESS = 0;
+    private static final int POST_GUEST_SUCCESS = 1;
+    private static final int POST_GUEST_FAIL = 2;
+    private static final int DELETE_GUEST_SUCCESS = 3;
+    private static final int DELETE_GUEST_FAIL = 4;
+    private static final int GET_TOKEN_SUCCESS = 5;
+    private static final int GET_EVENTS_SUCCESS = 6;
+
     public static int eventID;
     public static Event event;
     public static TextView textLocation;
@@ -74,6 +83,11 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
         bannerURL = "http://devon-dickson.com/images/events/"+ event.getImage();
         Picasso.with(this).load(bannerURL).error(R.drawable.image_error).resize(720, 304).centerCrop().into(imageBanner);
 
+        setClickListeners();
+        fetchGuests();
+    }
+
+    public void setClickListeners() {
         cardDate.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -107,13 +121,16 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
             }
         });
 
-
-        Intent guestsIntent = new Intent(this, ApiService.class);
-        guestsIntent.putExtra("receiver", mReceiver);
-        guestsIntent.putExtra("EventID", event.getEventID());
-        guestsIntent.setAction("GET_GUESTS");
-        this.startService(guestsIntent);
-
+        buttonNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent NoIntent = new Intent(getApplication(), ApiService.class);
+                NoIntent.putExtra("receiver", mReceiver);
+                NoIntent.putExtra("EventID", event.getEventID());
+                NoIntent.setAction("DELETE_GUESTS");
+                getApplication().startService(NoIntent);
+            }
+        });
     }
 
     //Return to previous event, or eventList if this was the first event opened.
@@ -153,16 +170,19 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
-        if(resultCode==3) {
+        if(resultCode==GET_GUESTS_SUCCESS) {
             guests = (ArrayList<HashMap<String, String>>)(resultData.getSerializable("guests"));
             displayGuests(guests);
-        }else if(resultCode==1) {
-            Log.d("RSVP", "Successful");
+        }else if(resultCode==POST_GUEST_SUCCESS) {
             fetchGuests();
             Toast.makeText(getApplication(), "Great, see you there!", Toast.LENGTH_SHORT).show();
-        }else if(resultCode==0) {
-            Log.d("RSVP", "Failed");
+        }else if(resultCode==POST_GUEST_FAIL) {
             Toast.makeText(getApplication(), "Whoops, you're already going!", Toast.LENGTH_SHORT).show();
+        }else if(resultCode==DELETE_GUEST_SUCCESS) {
+            fetchGuests();
+            Toast.makeText(getApplication(), "Maybe next time?", Toast.LENGTH_SHORT).show();
+        }else if(resultCode==DELETE_GUEST_FAIL) {
+            Toast.makeText(getApplication(), "Whoops, you weren't going anyways!", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -177,13 +197,17 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
 
     private void displayGuests(ArrayList<HashMap<String, String>> guests) {
         int numGuests = guests.size();
-        if(numGuests>0) {
+        if(numGuests>1) {
             headerFriends.setText(numGuests + " Friends Are!");
+
+        }else if(numGuests==1) {
+            headerFriends.setText(numGuests + " Friend Is!");
         }else {
             headerFriends.setText("Be the First to RSVP!");
         }
 
         LinearLayout guestView = (LinearLayout)findViewById(R.id.layoutFaces);
+        guestView.removeAllViews();
 
         for(int i = 0; i < numGuests; i++) {
             de.hdodenhof.circleimageview.CircleImageView face = new de.hdodenhof.circleimageview.CircleImageView(this);
@@ -202,12 +226,3 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
 
     }
 }
-
-/*
-<de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/face_devon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/face"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp" />*/

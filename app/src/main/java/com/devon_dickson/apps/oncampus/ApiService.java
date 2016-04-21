@@ -49,6 +49,7 @@ public class ApiService extends IntentService {
     private static final String ACTION_POST_GUESTS = "POST_GUESTS";
     private static final String ACTION_GET_TOKEN = "GET_TOKEN";
     private static final String ACTION_POST_EVENTS = "POST_EVENTS";
+    private static final String ACTION_DELETE_GUESTS = "DELETE_GUESTS";
 
     //Intent Extras
     private static final String EXTRA_EVENT_ID = "EventID";
@@ -66,6 +67,13 @@ public class ApiService extends IntentService {
     private static final String TAG_DESC = "description";
     private static final String TAG_IMG = "image";
     private static final String TAG_FACE = "facebook";
+    private static final int GET_GUESTS_SUCCESS = 0;
+    private static final int POST_GUEST_SUCCESS = 1;
+    private static final int POST_GUEST_FAIL = 2;
+    private static final int DELETE_GUEST_SUCCESS = 3;
+    private static final int DELETE_GUEST_FAIL = 4;
+    private static final int GET_TOKEN_SUCCESS = 5;
+    private static final int GET_EVENTS_SUCCESS = 6;
 
     //Results Receiver
     public ResultReceiver receiver;
@@ -89,14 +97,18 @@ public class ApiService extends IntentService {
                 }catch(Exception e) {
                     Log.d("Exception",e+"");
                 }
-            } else if (ACTION_GET_GUESTS.equals(action)) {
+            }
+
+            else if (ACTION_GET_GUESTS.equals(action)) {
                 final String param1 = intent.getStringExtra(EXTRA_EVENT_ID);
                 try {
                     handleActionGetGuests(param1);
                 }catch(Exception e) {
                     Log.d("Exception",e+"");
                 }
-            } else if (ACTION_GET_TOKEN.equals(action)) {
+            }
+
+            else if (ACTION_GET_TOKEN.equals(action)) {
                 final String param1 = intent.getStringExtra(EXTRA_USER_ACCESS_TOKEN);
                 final String param2 = intent.getStringExtra(EXTRA_FACEBOOK_ID);
                 try {
@@ -104,14 +116,18 @@ public class ApiService extends IntentService {
                 }catch(Exception e) {
                     Log.d("Exception",e+"");
                 }
-            } else if (ACTION_POST_EVENTS.equals(action)) {
+            }
+
+            else if (ACTION_POST_EVENTS.equals(action)) {
                 final String param1 = intent.getStringExtra(EXTRA_EVENT);
                 try {
                     handleActionPostEvents(param1);
                 }catch(Exception e) {
                     Log.d("Exception",e+"");
                 }
-            } else if (ACTION_POST_GUESTS.equals(action)) {
+            }
+
+            else if (ACTION_POST_GUESTS.equals(action)) {
                 final String param1 = intent.getStringExtra(EXTRA_EVENT_ID);
                 try {
                     handleActionPostGuests(param1);
@@ -119,7 +135,46 @@ public class ApiService extends IntentService {
                     Log.d("Exception",e+"");
                 }
             }
+
+            else if (ACTION_DELETE_GUESTS.equals(action)) {
+                final String param1 = intent.getStringExtra(EXTRA_EVENT_ID);
+                try {
+                    handleActionDeleteGuests(param1);
+                }catch(Exception e) {
+                    Log.d("Exception",e+"");
+                }
+            }
         }
+    }
+
+    private void handleActionDeleteGuests(String eventID) throws Exception{
+        int result;
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String prefJWT = settings.getString("jwt", "");
+        Log.d("JWT", prefJWT);
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("token", prefJWT)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url+api+"events/"+ eventID+"/guests/0?token="+prefJWT)
+                .delete(null)
+                .build();
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Unexpected code " + response);
+        }
+
+        String jsonStr = response.body().string();
+
+        if(jsonStr.equals("\"Success\"")) {
+            result = DELETE_GUEST_SUCCESS;
+        }else {
+            result = DELETE_GUEST_FAIL;
+        }
+        Log.d("1 means you're removed", result+"");
+        receiver.send(result, null);
     }
 
     private void handleActionPostGuests(String eventID) throws Exception{
@@ -144,9 +199,9 @@ public class ApiService extends IntentService {
         String jsonStr = response.body().string();
 
         if(jsonStr.equals("\"Success\"")) {
-            result = 1;
+            result = POST_GUEST_SUCCESS;
         }else {
-            result = 0;
+            result = POST_GUEST_FAIL;
         }
         Log.d("1 means you were added", result+"");
         receiver.send(result, null);
@@ -168,7 +223,7 @@ public class ApiService extends IntentService {
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("jwt", resp);
         editor.commit();
-        receiver.send(1, null);
+        receiver.send(GET_TOKEN_SUCCESS, null);
     }
 
     public void handleActionGetEvents() throws Exception{
@@ -230,7 +285,7 @@ public class ApiService extends IntentService {
             Log.e("ServiceHandler", "Couldn't get any data from the url");
         }
 
-        receiver.send(1, null);
+        receiver.send(GET_EVENTS_SUCCESS, null);
     }
 
     public void handleActionGetGuests(String eventID) throws Exception{
@@ -261,7 +316,7 @@ public class ApiService extends IntentService {
             bundle.putSerializable("guests", guests);
         }
 
-        receiver.send(3, bundle);
+        receiver.send(GET_GUESTS_SUCCESS, bundle);
     }
 
     public void handleActionPostEvents(String param1) {
