@@ -269,19 +269,21 @@ public class ApiService extends IntentService {
                 long startInt = 0;
                 long endInt = 0;
 
-                SimpleDateFormat format = new SimpleDateFormat("yyMMddHHmmss", Locale.US);
+                SimpleDateFormat format = new SimpleDateFormat("EEE, MMM d, h:mm a", Locale.US);
                 SimpleDateFormat parserSDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
                 try {
                     Date startDate = parserSDF.parse(startTime);
                     startInt = startDate.getTime();
+                    startTime = format.format(startDate);
 
                     Date endDate = parserSDF.parse(endTime);
                     endInt = endDate.getTime();
+                    endTime = format.format(endDate);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
-                Event eventTableRow = new Event(eventID, name, location, desc, org, startInt, endInt, image, facebook);
+                Event eventTableRow = new Event(eventID, name, location, desc, org, startInt, startTime, endInt, endTime, image, facebook);
                 eventTableRow.save();
             }
         } catch (JSONException e) {

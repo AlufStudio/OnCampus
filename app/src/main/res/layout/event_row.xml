@@ -71,41 +71,6 @@
                         />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="8dp"
-                    android:paddingLeft="8dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignEnd="@+id/cardInfo"
-                    android:paddingTop="8dp"
-                    android:padding="8dp">
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkBox"
-                        android:button="@drawable/checkstar"
-                        android:buttonTint="#888888" />
-
-                    <ImageView
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:id="@+id/cardClock"
-                        android:src="@drawable/ic_access_time_24dp"
-                        android:tint="#888888"
-                        android:layout_toRightOf="@id/checkBox"
-                        android:layout_marginLeft="12dp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/cardMenu"
-                        android:src="@drawable/ic_more_vert_24dp"
-                        android:tint="#888888"
-                        android:layout_toRightOf="@id/cardClock" />
-                </RelativeLayout>
-
 
             </RelativeLayout>
 

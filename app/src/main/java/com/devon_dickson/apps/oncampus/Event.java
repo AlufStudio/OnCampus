@@ -18,16 +18,16 @@ public class Event extends SugarRecord{
     private String location;
     private String description;
     private String org;
-    private long endTime;
-    private long startTime;
+    private long endInt;
+    private long startInt;
+    private String endTime;
+    private String startTime;
     private String image;
     private String facebook;
-    private String startTimeString;
-    private String endTimeString;
 
     public Event() {}
 
-    public Event(String eventID, String name, String location, String description, String org, long startTime, long endTime, String image, String facebook) {
+    public Event(String eventID, String name, String location, String description, String org, long startInt, String startTime, long endInt, String endTime, String image, String facebook) {
         this.eventID = eventID;
         this.name = name;
         this.location = location;
@@ -35,24 +35,10 @@ public class Event extends SugarRecord{
         this.org = org;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.startInt = startInt;
+        this.endInt = endInt;
         this.image = image;
         this.facebook = facebook;
-
-
-        SimpleDateFormat format = new SimpleDateFormat("EEE, MMM d, hh:mm a", Locale.US);
-        SimpleDateFormat parserSDF = new SimpleDateFormat("yyMMddHHmmss", Locale.US);
-        try {
-            Date startDate = parserSDF.parse(startTime+"");
-            this.startTimeString = format.format(startDate);
-
-            Date endDate = parserSDF.parse(endTime+"");
-            endTimeString = format.format(endDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-
     }
 
     @Override
@@ -88,7 +74,7 @@ public class Event extends SugarRecord{
         return eventID;
     }
 
-    public long getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
@@ -96,11 +82,11 @@ public class Event extends SugarRecord{
         this.description = description;
     }
 
-    public void setEndTime(int endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
-    public void setStartTime(int startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
@@ -112,7 +98,7 @@ public class Event extends SugarRecord{
         this.facebook = facebook;
     }
 
-    public long getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
@@ -128,7 +114,23 @@ public class Event extends SugarRecord{
         return description;
     }
 
-    public String getStartTimeString() {
-        return startTimeString;
+    public void setEventID(String eventID) {
+        this.eventID = eventID;
+    }
+
+    public long getEndInt() {
+        return endInt;
+    }
+
+    public void setEndInt(long endInt) {
+        this.endInt = endInt;
+    }
+
+    public long getStartInt() {
+        return startInt;
+    }
+
+    public void setStartInt(long startInt) {
+        this.startInt = startInt;
     }
 }

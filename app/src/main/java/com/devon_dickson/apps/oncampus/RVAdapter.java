@@ -74,7 +74,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.EventViewHolder>{
     @Override
     public void onBindViewHolder(EventViewHolder eventViewHolder, int i) {
         eventViewHolder.eventName.setText(events.get(i).getName());
-        eventViewHolder.eventTime.setText(events.get(i).getStartTimeString());
+        eventViewHolder.eventTime.setText(events.get(i).getStartTime());
         eventViewHolder.eventLocation.setText(events.get(i).getLocation());
         String imageURL = "http://devon-dickson.com/images/events/"+ events.get(i).getImage();
         Log.d("Image URL", imageURL);

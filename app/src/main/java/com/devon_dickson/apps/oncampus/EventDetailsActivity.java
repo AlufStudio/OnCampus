@@ -73,7 +73,7 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
         CollapsingToolbarLayout tb = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         tb.setTitle(event.getName());
         textLocation.setText(event.getLocation());
-        textDate.setText(event.getStartTimeString());
+        textDate.setText(event.getStartTime());
         textDescription.setText(event.getDescription());
         textOrg.setText(event.getOrg());
 
@@ -145,8 +145,8 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
     @Override
     protected void onSwipeLeft() {
         try {
-            long end = event.getEndTime();
-            String newID = Event.find(Event.class, "END_TIME>", end + "", null, "END_TIME asc").get(0).getEventID();
+            long endTime = event.getEndInt();
+            String newID = Event.findWithQuery(Event.class, "Select * from Event WHERE END_TIME > " + endTime).get(0).getEventID();
             Intent eventDetailsIntent = new Intent(this, EventDetailsActivity.class);
 
             eventDetailsIntent.putExtra("EventID", (Integer.parseInt(newID)));
