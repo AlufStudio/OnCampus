@@ -19,10 +19,6 @@ import okhttp3.OkHttpClient;
 
 public class LoginActivity extends AppCompatActivity implements ApiServiceResultReceiver.Receiver{
     CallbackManager callbackManager;
-    private String authURL = "http://devon-dickson.com/auth";
-    private final OkHttpClient client = new OkHttpClient();
-    private final Gson gson = new Gson();
-    public String jwt;
     public Intent mainActivityIntent;
     public LoginResult result;
     public ApiServiceResultReceiver mReceiver;
@@ -32,22 +28,16 @@ public class LoginActivity extends AppCompatActivity implements ApiServiceResult
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
+        mReceiver = new ApiServiceResultReceiver(new Handler());
+        mReceiver.setReceiver(this);
 
         if(AccessToken.getCurrentAccessToken()!=null) {
             mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(mainActivityIntent);
-        }else {
-            Log.d("This", "Didn't work");
         }
-
-
-        mReceiver = new ApiServiceResultReceiver(new Handler());
-        mReceiver.setReceiver(this);
-
 
         callbackManager = CallbackManager.Factory.create();
         LoginButton loginButton = (LoginButton) findViewById(R.id.authButton);
-
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {

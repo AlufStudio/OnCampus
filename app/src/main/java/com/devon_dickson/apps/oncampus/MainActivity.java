@@ -10,10 +10,8 @@ import android.view.MenuItem;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener{
     private ViewPager viewPager;
-    private TabPagerAdapter tabPagerAdapter;
     private ActionBar actionBar;
     private String[] tabNames = { "Upcoming", "Saved", "Attended" };
-    public String JWT;
 
 
     @Override
@@ -22,7 +20,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         setContentView(R.layout.activity_main);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        tabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
+        TabPagerAdapter tabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(tabPagerAdapter);
         actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);

@@ -28,15 +28,12 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
     private static final int POST_GUEST_FAIL = 2;
     private static final int DELETE_GUEST_SUCCESS = 3;
     private static final int DELETE_GUEST_FAIL = 4;
-    private static final int GET_TOKEN_SUCCESS = 5;
-    private static final int GET_EVENTS_SUCCESS = 6;
 
     public static int eventID;
     public static Event event;
     public static TextView textLocation;
     public static TextView textDate;
     public static ImageView imageBanner;
-    public static String orgURL;
     public static String bannerURL;
     public static TextView textDescription;
     public static TextView textOrg;
@@ -141,7 +138,7 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
     }
 
     //Move to next Event in the database
-    //TODO: Change method for deciding what the next acticity should be
+    //TODO: Change method for deciding what the next activity should be
     //      Right now, the database is always refreshed with events that haven't yet occurred, in chrono
     //      order. But if I ever get filtering and searching and ordering to work in the Main Activity,
     //      Then eventID+1 will load up an event that should have been filtered out.
