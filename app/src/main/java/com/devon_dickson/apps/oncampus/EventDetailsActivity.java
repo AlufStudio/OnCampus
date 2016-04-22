@@ -146,7 +146,7 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
     protected void onSwipeLeft() {
         try {
             long endTime = event.getEndInt();
-            String newID = Event.findWithQuery(Event.class, "Select * from Event WHERE END_TIME > " + endTime).get(0).getEventID();
+            String newID = Event.findWithQuery(Event.class, "Select * from Event WHERE END_INT > " + endTime).get(0).getEventID();
             Intent eventDetailsIntent = new Intent(this, EventDetailsActivity.class);
 
             eventDetailsIntent.putExtra("EventID", (Integer.parseInt(newID)));
