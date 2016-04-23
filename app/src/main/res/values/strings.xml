@@ -19,4 +19,47 @@
     <string name="place_org">PACE</string>
     <string name="place_name">Great Escape: Boston</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable push notifications</string>
+    <string name="pref_description_social_recommendations">Receive reminders and updates on events you are attending
+    </string>
+
+    <string name="pref_title_custom_date">Custom date format</string>
+    <string name="pref_custom_date">Custom Date</string>
+    <string name="pref_custom_date_message">Use SimpleDateFormat notation (ex: "EEE, MMM d, h:mm a")</string>
+
+    <string name="pref_title_theme">Select theme</string>
+    <string-array name="pref_theme_titles">
+        <item>Default</item>
+        <item>Night</item>
+        <item>Friendship is Magic</item>
+    </string-array>
+    <string-array name="pref_theme_values">
+        <item>Default</item>
+        <item>Night</item>
+        <item>FIM</item>
+    </string-array>
+
+    <string name="pref_title_date">Select date format</string>
+    <string-array name="pref_date_titles">
+        <item>Tue, Jun 14, 6:00 PM</item>
+        <item>6/14/16 6:00 PM(US)</item>
+        <item>14/6/16 18:00(UK)</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="pref_date_values">
+        <item>EEE, MMM d, h:mm a</item>
+        <item>M/d/y h:mm a</item>
+        <item>d/M/y H:mm</item>
+        <item>3</item>
+    </string-array>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
 </resources>

@@ -109,6 +109,25 @@ public class UpcomingTab extends Fragment implements ApiServiceResultReceiver.Re
             }
         }));
         super.onResume();
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(getActivity());
+        String themeName = pref.getString("theme", "Default");
+        Log.d("Theme", themeName);
+        if (themeName.equals("Night")) {
+            getActivity().setTheme(R.style.NightAppTheme);
+
+
+
+        }else if (themeName.equals("FIM")) {
+            //Toast.makeText(this, "set theme", Toast.LENGTH_SHORT).show();
+
+            getActivity().setTheme(R.style.FimAppTheme);
+
+        }else if (themeName.equals("Default")) {
+
+            getActivity().setTheme(R.style.AppTheme);
+
+        }
     }
 
     @Override

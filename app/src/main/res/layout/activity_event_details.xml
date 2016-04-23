@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/primary_material_light"
+            app:contentScrim="?android:colorPrimary"
             app:expandedTitleMargin="20dp"
             app:expandedTitleTextAppearance="@style/toolbarTitle">
 
@@ -81,19 +81,19 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingTop="10dp"
-                android:background="#ffffff"
+                android:background="?cardForeground"
                 android:soundEffectsEnabled="false"
                 android:paddingBottom="0dp">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/head_attend"
                     android:id="@+id/headerAttending"
                     android:textStyle="bold"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:textColor="@android:color/secondary_text_light" />
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -139,7 +139,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
+                android:background="?cardForeground"
                 android:id="@+id/layoutFriends">
 
                 <TextView
@@ -173,7 +173,8 @@
                 android:layout_margin="@dimen/card_margin"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:id="@+id/cardLocation">
+                android:id="@+id/cardLocation"
+                android:background="?cardForeground">
 
                 <RelativeLayout
                     style="@style/Widget.CardContent"
@@ -181,7 +182,8 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp">
+                    android:paddingBottom="8dp"
+                    android:background="?cardForeground">
 
                     <ImageView
                         android:layout_width="48dp"
@@ -192,7 +194,8 @@
                         android:layout_alignParentTop="false"
                         android:layout_marginStart="16dp"
                         android:layout_centerVertical="true"
-                        android:padding="8dp" />
+                        android:padding="8dp"
+                        android:tint="?android:textColorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -225,7 +228,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
-                    android:paddingTop="8dp">
+                    android:paddingTop="8dp"
+                    android:background="?cardForeground">
 
                     <ImageView
                         android:layout_width="48dp"
@@ -236,7 +240,8 @@
                         android:layout_alignParentTop="false"
                         android:layout_marginStart="16dp"
                         android:layout_centerVertical="true"
-                        android:padding="8dp" />
+                        android:padding="8dp"
+                        android:tint="?android:textColorPrimary"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -268,7 +273,8 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp">
+                    android:paddingBottom="8dp"
+                    android:background="?cardForeground">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -300,7 +306,8 @@
                         android:layout_alignParentTop="false"
                         android:layout_marginStart="16dp"
                         android:layout_centerVertical="true"
-                        android:padding="8dp" />
+                        android:padding="8dp"
+                        android:tint="?android:textColorPrimary"/>
 
                 </RelativeLayout>
 
@@ -315,7 +322,8 @@
                 <RelativeLayout
                     style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="?cardForeground">
 
                     <TextView
                         android:layout_width="match_parent"

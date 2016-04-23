@@ -1,8 +1,10 @@
 package com.devon_dickson.apps.oncampus;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.CalendarContract;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.CardView;
@@ -46,6 +48,25 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        String themeName = pref.getString("theme", "Default");
+        Log.d("Theme", themeName);
+        if (themeName.equals("Night")) {
+            setTheme(R.style.NightAppCompatTheme);
+
+
+
+        }else if (themeName.equals("FIM")) {
+            //Toast.makeText(this, "set theme", Toast.LENGTH_SHORT).show();
+
+            setTheme(R.style.FimAppCompatTheme);
+
+        }else if (themeName.equals("Default")) {
+
+            setTheme(R.style.AppCompatTheme);
+
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
         mReceiver = new ApiServiceResultReceiver(new Handler());
@@ -221,5 +242,29 @@ public class EventDetailsActivity extends SwipeActivity implements ApiServiceRes
             Picasso.with(this).load(faceURL).error(R.drawable.image_error).resize(96, 96).centerCrop().into(face);
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        String themeName = pref.getString("theme", "Default");
+        Log.d("Theme", themeName);
+        if (themeName.equals("Night")) {
+            setTheme(R.style.NightAppCompatTheme);
+
+
+
+        }else if (themeName.equals("FIM")) {
+            //Toast.makeText(this, "set theme", Toast.LENGTH_SHORT).show();
+
+            setTheme(R.style.FimAppCompatTheme);
+
+        }else if (themeName.equals("Default")) {
+
+            setTheme(R.style.AppCompatTheme);
+
+        }
     }
 }
