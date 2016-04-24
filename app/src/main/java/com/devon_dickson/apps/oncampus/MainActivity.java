@@ -1,9 +1,14 @@
 package com.devon_dickson.apps.oncampus;
 
 import android.app.ActionBar;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.audiofx.BassBoost;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,6 +21,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -46,6 +52,20 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         });
     }
 
+    private void checkTheme() {
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        String themeName = pref.getString("theme", "Default");
+        Log.d("Theme", themeName);
+        if (themeName.equals("Night")) {
+            setTheme(R.style.NightAppTheme);
+        }else if (themeName.equals("FIM")) {
+            setTheme(R.style.FimAppTheme);
+        }else if (themeName.equals("Default")) {
+            setTheme(R.style.AppTheme);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -62,6 +82,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            this.startActivity(settingsIntent);
             return true;
         }
 
@@ -81,5 +103,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     @Override
     public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
 
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        recreate();
     }
 }

@@ -5,7 +5,7 @@
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
     <ListPreference
-        android:defaultValue="0"
+        android:defaultValue="1"
         android:entries="@array/pref_date_titles"
         android:entryValues="@array/pref_date_values"
         android:key="date"
@@ -24,13 +24,13 @@
          dismiss it. -->
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
     <ListPreference
-        android:defaultValue="0"
         android:entries="@array/pref_theme_titles"
         android:entryValues="@array/pref_theme_values"
         android:key="theme"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="@string/pref_title_theme" />
+        android:title="@string/pref_title_theme"
+        android:defaultValue="Default"/>
 
 
 

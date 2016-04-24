@@ -17,6 +17,8 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.gson.Gson;
 
+import java.util.Arrays;
+
 import okhttp3.OkHttpClient;
 
 public class LoginActivity extends AppCompatActivity implements ApiServiceResultReceiver.Receiver{
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements ApiServiceResult
 
         callbackManager = CallbackManager.Factory.create();
         LoginButton loginButton = (LoginButton) findViewById(R.id.authbutton);
+        loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {

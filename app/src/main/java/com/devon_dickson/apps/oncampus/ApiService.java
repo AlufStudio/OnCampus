@@ -219,11 +219,10 @@ public class ApiService extends IntentService {
         Response response = client.newCall(request).execute();
 
         if(!response.isSuccessful()) {
-            throw new IOException("Unexpected code " + response);
+            throw new IOException("AUTH: Unexpected code " + response);
         }
 
         String resp = response.body().string();
-
         SharedPreferences settings = PreferenceManager
                 .getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = settings.edit();
