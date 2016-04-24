@@ -100,37 +100,6 @@ public class UpcomingTab extends Fragment implements ApiServiceResultReceiver.Re
     }
 
     @Override
-    public void onResume() {
-        List<Event> events = Event.listAll(Event.class);
-        rv.setAdapter(new RVAdapter(events, new RVAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Event event) {
-                openEvent(event.getEventID());
-            }
-        }));
-        super.onResume();
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(getActivity());
-        String themeName = pref.getString("theme", "Default");
-        Log.d("Theme", themeName);
-        if (themeName.equals("Night")) {
-            getActivity().setTheme(R.style.NightAppTheme);
-
-
-
-        }else if (themeName.equals("FIM")) {
-            //Toast.makeText(this, "set theme", Toast.LENGTH_SHORT).show();
-
-            getActivity().setTheme(R.style.FimAppTheme);
-
-        }else if (themeName.equals("Default")) {
-
-            getActivity().setTheme(R.style.AppTheme);
-
-        }
-    }
-
-    @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
         List<Event> events = Event.listAll(Event.class);
         rv.setAdapter(new RVAdapter(events, new RVAdapter.OnItemClickListener() {

@@ -81,7 +81,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingTop="10dp"
-                android:background="?cardForeground"
+                android:background="?attr/cardForeground"
                 android:soundEffectsEnabled="false"
                 android:paddingBottom="0dp">
 
@@ -139,7 +139,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?cardForeground"
+                android:background="?attr/cardForeground"
                 android:id="@+id/layoutFriends">
 
                 <TextView
@@ -174,7 +174,7 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/cardLocation"
-                android:background="?cardForeground">
+                android:background="?attr/cardForeground">
 
                 <RelativeLayout
                     style="@style/Widget.CardContent"
@@ -183,7 +183,7 @@
                     android:clickable="true"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:background="?cardForeground">
+                    android:background="?attr/cardForeground">
 
                     <ImageView
                         android:layout_width="48dp"
@@ -229,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
                     android:paddingTop="8dp"
-                    android:background="?cardForeground">
+                    android:background="?attr/cardForeground">
 
                     <ImageView
                         android:layout_width="48dp"
@@ -274,7 +274,7 @@
                     android:clickable="true"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:background="?cardForeground">
+                    android:background="?attr/cardForeground">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -323,7 +323,7 @@
                     style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?cardForeground">
+                    android:background="?attr/cardForeground">
 
                     <TextView
                         android:layout_width="match_parent"

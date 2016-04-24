@@ -27,25 +27,6 @@ public class LoginActivity extends AppCompatActivity implements ApiServiceResult
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        String themeName = pref.getString("theme", "Default");
-        Log.d("Theme", themeName);
-        if (themeName.equals("Night")) {
-            setTheme(R.style.NightAppCompatTheme);
-
-
-
-        }else if (themeName.equals("FIM")) {
-            //Toast.makeText(this, "set theme", Toast.LENGTH_SHORT).show();
-
-            setTheme(R.style.FimAppCompatTheme);
-
-        }else if (themeName.equals("Default")) {
-
-            setTheme(R.style.AppCompatTheme);
-
-        }
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
@@ -58,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements ApiServiceResult
         }
 
         callbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.authButton);
+        LoginButton loginButton = (LoginButton) findViewById(R.id.authbutton);
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -97,29 +78,5 @@ public class LoginActivity extends AppCompatActivity implements ApiServiceResult
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        String themeName = pref.getString("theme", "Default");
-        Log.d("Theme", themeName);
-        if (themeName.equals("Night")) {
-            setTheme(R.style.NightAppCompatTheme);
-
-
-
-        }else if (themeName.equals("FIM")) {
-            //Toast.makeText(this, "set theme", Toast.LENGTH_SHORT).show();
-
-            setTheme(R.style.FimAppCompatTheme);
-
-        }else if (themeName.equals("Default")) {
-
-            setTheme(R.style.AppCompatTheme);
-
-        }
     }
 }

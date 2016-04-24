@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/imageView"
+        android:id="@+id/imageview"
         android:src="@drawable/login"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
@@ -18,7 +18,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
+        android:id="@+id/imageview2"
         android:layout_marginTop="90dp"
         android:src="@drawable/logo"
         android:layout_alignParentTop="true"
@@ -29,14 +29,14 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title.Inverse"
         android:text="@string/app_name"
-        android:id="@+id/textView"
-        android:layout_below="@+id/imageView2"
+        android:id="@+id/textview"
+        android:layout_below="@+id/imageview2"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_2_material" />
 
     <com.facebook.login.widget.LoginButton
-        android:id="@+id/authButton"
+        android:id="@+id/authbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

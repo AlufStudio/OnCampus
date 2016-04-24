@@ -1,13 +1,9 @@
 package com.devon_dickson.apps.oncampus;
 
 import android.app.ActionBar;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,26 +16,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        String themeName = pref.getString("theme", "Default");
-        Log.d("Theme", themeName);
-        if (themeName.equals("Night")) {
-            setTheme(R.style.NightAppTheme);
-
-
-
-        }else if (themeName.equals("FIM")) {
-            //Toast.makeText(this, "set theme", Toast.LENGTH_SHORT).show();
-
-            setTheme(R.style.FimAppTheme);
-
-        }else if (themeName.equals("Default")) {
-
-            setTheme(R.style.AppTheme);
-
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -59,9 +35,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             public void onPageSelected(int postion) {
                 actionBar.setSelectedNavigationItem(postion);
             }
+
             @Override
             public void onPageScrolled(int arg0, float arg1, int arg2) {
             }
+
             @Override
             public void onPageScrollStateChanged(int arg0) {
             }
@@ -84,8 +62,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent settingsIntent = new Intent(this, SettingsActivity.class);
-            startActivity(settingsIntent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -104,56 +81,5 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     @Override
     public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
 
-    }
-
-    @Override
-     public void onResume() {
-
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        String themeName = pref.getString("theme", "Default");
-        Log.d("Theme", themeName);
-        if (themeName.equals("Night")) {
-            setTheme(R.style.NightAppTheme);
-
-
-
-        }else if (themeName.equals("FIM")) {
-            //Toast.makeText(this, "set theme", Toast.LENGTH_SHORT).show();
-
-            setTheme(R.style.FimAppTheme);
-
-        }else if (themeName.equals("Default")) {
-
-            setTheme(R.style.AppTheme);
-
-        }
-        super.onResume();
-    }
-
-    @Override
-    public void onRestart() {
-
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        String themeName = pref.getString("theme", "Default");
-        Log.d("Theme", themeName);
-        if (themeName.equals("Night")) {
-            setTheme(R.style.NightAppTheme);
-
-
-
-        }else if (themeName.equals("FIM")) {
-            //Toast.makeText(this, "set theme", Toast.LENGTH_SHORT).show();
-
-            setTheme(R.style.FimAppTheme);
-
-        }else if (themeName.equals("Default")) {
-
-            setTheme(R.style.AppTheme);
-
-        }
-        super.onRestart();
-        recreate();
     }
 }

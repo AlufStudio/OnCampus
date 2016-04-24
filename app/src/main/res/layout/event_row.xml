@@ -16,7 +16,7 @@
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
         android:paddingBottom="0dp"
-        android:background="?cardForeground">
+        android:background="?attr/cardForeground">
 
         <ImageView
             android:layout_height="100dp"
