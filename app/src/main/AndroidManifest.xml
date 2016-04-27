@@ -44,7 +44,7 @@
             android:name="com.devon_dickson.apps.oncampus.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppCompatTheme">
+            android:theme="@style/AppCompatTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity implements ApiServiceResult
 
         if(AccessToken.getCurrentAccessToken()!=null) {
             mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+            mainActivityIntent.setFlags(mainActivityIntent.FLAG_ACTIVITY_NEW_TASK | mainActivityIntent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(mainActivityIntent);
         }
 
@@ -75,6 +76,7 @@ public class LoginActivity extends AppCompatActivity implements ApiServiceResult
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
         mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+        mainActivityIntent.setFlags(mainActivityIntent.FLAG_ACTIVITY_NEW_TASK | mainActivityIntent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainActivityIntent);
     }
 

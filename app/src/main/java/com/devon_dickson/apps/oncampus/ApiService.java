@@ -234,6 +234,9 @@ public class ApiService extends IntentService {
 
     //Get events service
     public void handleActionGetEvents() throws Exception{
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String prefDateFormat = settings.getString("dateFormat", "EEE, MMM d, h:mm a");
+
         Event.deleteAll(Event.class);
 
         Request request = new Request.Builder()
@@ -268,7 +271,7 @@ public class ApiService extends IntentService {
                 long startInt = 0;
                 long endInt = 0;
 
-                SimpleDateFormat format = new SimpleDateFormat("EEE, MMM d, h:mm a", Locale.US);
+                SimpleDateFormat format = new SimpleDateFormat(prefDateFormat, Locale.US);
                 SimpleDateFormat parserSDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
                 try {
                     Date startDate = parserSDF.parse(startTime);

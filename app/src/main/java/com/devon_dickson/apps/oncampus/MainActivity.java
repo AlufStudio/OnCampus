@@ -12,6 +12,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener{
     private ViewPager viewPager;
@@ -23,6 +26,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     protected void onCreate(Bundle savedInstanceState) {
         checkTheme();
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -84,6 +88,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             this.startActivity(settingsIntent);
+            return true;
+        }else if (id == R.id.action_logout) {
+            SharedPreferences sharedPrefs =PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = sharedPrefs.edit();
+            editor.remove("JWT");
+            editor.apply();
+
+            LoginManager.getInstance().logOut();
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            loginIntent.setFlags(loginIntent.FLAG_ACTIVITY_NEW_TASK | loginIntent.FLAG_ACTIVITY_CLEAR_TASK);
+            this.startActivity(loginIntent);
             return true;
         }
 
