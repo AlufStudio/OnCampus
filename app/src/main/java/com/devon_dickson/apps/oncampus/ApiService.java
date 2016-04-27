@@ -51,6 +51,7 @@ public class ApiService extends IntentService {
     private static final String ACTION_GET_TOKEN = "GET_TOKEN";
     private static final String ACTION_POST_EVENTS = "POST_EVENTS";
     private static final String ACTION_DELETE_GUESTS = "DELETE_GUESTS";
+    private static final String ACTION_GET_SAVED_EVENTS = "GET_SAVED_EVENTS";
 
     //Intent Extras
     private static final String EXTRA_EVENT_ID = "EventID";
@@ -78,6 +79,8 @@ public class ApiService extends IntentService {
     private static final int DELETE_GUEST_FAIL = 4;
     private static final int GET_TOKEN_SUCCESS = 5;
     private static final int GET_EVENTS_SUCCESS = 6;
+    private static final int GET_SAVED_EVENTS_SUCCESS = 7;
+    private static final int GET_SAVED_EVENTS_FAIL = 8;
 
     //Results Receiver
     public ResultReceiver receiver;
@@ -158,8 +161,46 @@ public class ApiService extends IntentService {
                     Log.d("Exception",e+"");
                 }
             }
+
+            //Get all events you've saved
+            else if (ACTION_GET_SAVED_EVENTS.equals(action)) {
+                try {
+                    handleActionGetSavedEvents();
+                }catch(Exception e) {
+                    Log.d("Exception",e+"");
+                }
+            }
         }
     }
+
+    private void handleActionGetSavedEvents() throws Exception{
+        Request request = new Request.Builder()
+                //.url(url + api + "users/0/events?token=" + prefJWT)
+                .url(url+api+"users/events?token=" + prefJWT)
+                .build();
+
+        Response response = client.newCall(request).execute();
+
+        if (!response.isSuccessful()) {
+            throw new IOException("Unexpected code " + response);
+        }
+
+        String jsonStr = response.body().string();
+        JSONArray jsonArray = new JSONArray(jsonStr);
+        ArrayList<String> events = new ArrayList<String>();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject c = jsonArray.getJSONObject(i);
+            String eventID = c.getString("event_id");
+            events.add(eventID);
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("events",events);
+
+        receiver.send(GET_SAVED_EVENTS_SUCCESS, bundle);
+    }
+
 
     //Cancel RSVP to event service
     private void handleActionDeleteGuests(String eventID) throws Exception{
