@@ -8,7 +8,7 @@
     <color name="primary_dark_material_light">#0288d1</color>
     <color name="accent_material_light">#ffd740</color>
     <color name="primary_text_default_material_light">#deffffff</color>
-    <color name="primary_material_dark">#212121</color>
+    <color name="primary_material_dark">#0288d1</color>
     <color name="primary_dark_material_dark">#000000</color>
 
     <color name="fim_primary_light">#ed3c96</color>

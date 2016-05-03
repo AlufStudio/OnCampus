@@ -50,6 +50,7 @@
         <item name="colorPrimary">@color/fim_primary_light</item>
         <item name="colorPrimaryDark">@color/fim_primary_dark</item>
         <item name="colorAccent">@color/fim_accent_light</item>
+        <item name="android:navigationBarColor">@color/fim_primary_dark</item>
     </style>
 
     <style name="FimAppTheme" parent="AppTheme">
@@ -59,6 +60,7 @@
         <item name="android:statusBarColor">@color/fim_primary_dark</item>
         <item name="android:windowBackground">@color/fim_window_background</item>
         <item name="cardForeground">@color/fim_card_foreground</item>
+        <item name="android:navigationBarColor">@color/fim_primary_dark</item>
     </style>
 
     <style name="NightAppTheme" parent="android:Theme.Material">
