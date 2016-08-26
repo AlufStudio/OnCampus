@@ -1,3 +1,3 @@
 # On Campus
-An android app to spread information on Campus events
+An android application to market events on a college campus.
 
